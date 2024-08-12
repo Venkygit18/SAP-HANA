@@ -22,10 +22,7 @@ backendpoolname="hana-db-BP"
 probename="hana-db-probe"
 sshpubkeyfile="/home/$USER/.ssh/id_rsa.pub"
 
-DiskSizeInGB=4
-DiskName="SBD-disk1"
-ShareNodes=2
-SkuName="Premium_LRS"
+
 
 if [ -f "./username.txt" ]
 then
@@ -150,14 +147,14 @@ az vm extension set \
 --vm-name $vmname2 \
 --name customScript \
 --publisher Microsoft.Azure.Extensions \
---protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/cluster_setup.sh"],"commandToExecute": "./cluster_setup.sh"}' >> $logfile
+--protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/cluster_setup.sh"],"commandToExecute": "./cluster_setup.sh"}' >> $logfile
 
 az vm extension set \
 --resource-group $rgname \
 --vm-name $vmname1 \
 --name customScript \
 --publisher Microsoft.Azure.Extensions \
---protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/cluster_setup.sh"],"commandToExecute": "./cluster_setup.sh"}' >> $logfile
+--protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/cluster_setup.sh"],"commandToExecute": "./cluster_setup.sh"}' >> $logfile
 
 echo " configuring fencing device "
 
@@ -243,14 +240,14 @@ az vm extension set \
     --vm-name $vmname1 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings "{\"fileUris\": [\"https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/format.sh\"],\"commandToExecute\": \"./format.sh \"}" >> $logfile
+    --protected-settings "{\"fileUris\": [\"https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/format.sh\"],\"commandToExecute\": \"./format.sh \"}" >> $logfile
 
 az vm extension set \
     --resource-group $rgname \
     --vm-name $vmname2 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings "{\"fileUris\": [\"https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/format.sh\"],\"commandToExecute\": \"./format.sh \"}" >> $logfile
+    --protected-settings "{\"fileUris\": [\"https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/format.sh\"],\"commandToExecute\": \"./format.sh \"}" >> $logfile
 
 echo "HANA installation node 1"
 
@@ -259,7 +256,7 @@ az vm extension set \
     --vm-name $vmname1 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/HAinstall.sh"],"commandToExecute": "./HAinstall.sh"}' >> $logfile
+    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/HAinstall.sh"],"commandToExecute": "./HAinstall.sh"}' >> $logfile
 
 echo "HANA installation node 2"
 
@@ -268,7 +265,7 @@ az vm extension set \
     --vm-name $vmname2 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/HAinstall.sh"],"commandToExecute": "./HAinstall.sh"}' >> $logfile
+    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/HAinstall.sh"],"commandToExecute": "./HAinstall.sh"}' >> $logfile
 
 
 
@@ -280,7 +277,7 @@ az vm extension set \
     --vm-name $vmname1 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/hanaconfigure.sh"],"commandToExecute": "./hanaconfigure.sh"}' >> $logfile
+    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/hanaconfigure.sh"],"commandToExecute": "./hanaconfigure.sh"}' >> $logfile
 
 echo "hana sync primary node1"
 
@@ -289,7 +286,7 @@ az vm extension set \
     --vm-name $vmname1 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/hanasyncprim.sh"],"commandToExecute": "./hanasyncprim.sh"}' >> $logfile
+    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/hanasyncprim.sh"],"commandToExecute": "./hanasyncprim.sh"}' >> $logfile
 
 az vm run-command invoke --resource-group $rgname --name $vmname1 --command-id RunShellScript --scripts 'cd / && ./drsync.sh'
 
@@ -298,7 +295,7 @@ az vm extension set \
     --vm-name $vmname1 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/hn1primary.sh"],"commandToExecute": "./hn1primary.sh"}' >> $logfile
+    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP_HANA/main/hn1primary.sh"],"commandToExecute": "./hn1primary.sh"}' >> $logfile
 
 echo "hana sync secondary node2 "
 
@@ -307,7 +304,7 @@ az vm extension set \
     --vm-name $vmname2 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/hanasyncsec.sh"],"commandToExecute": "./hanasyncsec.sh"}' >> $logfile
+    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP_HANA/main/hanasyncsec.sh"],"commandToExecute": "./hanasyncsec.sh"}' >> $logfile
 
 az vm run-command invoke --resource-group $rgname --name $vmname2 --command-id RunShellScript --scripts 'cd / && ./drsync.sh'
 
@@ -317,6 +314,6 @@ az vm extension set \
     --vm-name $vmname2 \
     --name customScript \
     --publisher Microsoft.Azure.Extensions \
-    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/spalnatik/SAP_HANA/main/hn1sec.sh"],"commandToExecute": "./hn1sec.sh"}' >> $logfile
+    --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP_HANA/main/hn1sec.sh"],"commandToExecute": "./hn1sec.sh"}' >> $logfile
 
 az vm run-command invoke --resource-group $rgname --name $vmname2 --command-id RunShellScript --scripts 'cd / && ./drsync1.sh && sudo crm resource cleanup'
