@@ -193,7 +193,7 @@ if [ "$choice" = "1" ]; then
     export subscriptionID
     #export password
 
-    wget -O susespn.sh https://raw.githubusercontent.com/spalnatik/SAP-HANA/main/susespn.sh
+    wget -O susespn.sh https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/susespn.sh
     filename='susespn.sh'
 
     az vm run-command invoke -g $rgname -n $vmname1 --command-id RunShellScript --scripts @$filename --parameters $clientid $clientsecret $rgname $subscriptionID >>  $logfile
@@ -228,7 +228,7 @@ else
     export rgname
     export subscriptionID
     #export password
-    wget -O susemi.sh https://raw.githubusercontent.com/spalnatik/SAP-HANA/main/susemi.sh
+    wget -O susemi.sh https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/susemi.sh
     filename='susemi.sh'
     az vm run-command invoke -g $rgname -n $vmname1 --command-id RunShellScript --scripts @$filename --parameters $rgname $subscriptionID >>  $logfile
 fi
