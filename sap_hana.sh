@@ -105,10 +105,10 @@ echo "Async Creating load balancer .."
 az network lb create --resource-group $rgname --name $lbname --location $loc --backend-pool-name $backendpoolname --frontend-ip-name $frontendip --private-ip-address "10.0.0.4" --sku "Standard" --vnet-name $vnetname --subnet $subnetname --no-wait >> $logfile
 
 echo "Async Creating First node, with both ssh key and password authentication methods .."
-az vm create -g $rgname -n $vmname1 --admin-username $username --admin-password $password --authentication-type "all"  --ssh-key-values $sshpubkeyfile --availability-set $asname --image $offer  --size "$sku_size" --vnet-name $vnetname --subnet $subnetname --public-ip-sku Standard --private-ip-address "10.0.0.5" --no-wait >> $logfile
+az vm create -g $rgname -n $vmname1 --admin-username $username --admin-password $password --authentication-type "all"  --ssh-key-values $sshpubkeyfile --availability-set $asname --image $offer  --size "$sku_size" --vnet-name $vnetname --subnet $subnetname --public-ip-sku Standard --private-ip-address "10.0.0.5" --generate-ssh-keys --no-wait >> $logfile
 
 echo "Sync Creating Second node, with both ssh key and password authentication methods .."
-az vm create -g $rgname -n $vmname2 --admin-username $username --admin-password $password --authentication-type "all" --ssh-key-values $sshpubkeyfile --availability-set $asname --image $offer  --size "$sku_size" --vnet-name $vnetname --subnet $subnetname --public-ip-sku Standard --private-ip-address "10.0.0.6" >> $logfile
+az vm create -g $rgname -n $vmname2 --admin-username $username --admin-password $password --authentication-type "all" --ssh-key-values $sshpubkeyfile --availability-set $asname --image $offer  --size "$sku_size" --vnet-name $vnetname --subnet $subnetname --public-ip-sku Standard --private-ip-address "10.0.0.6" --generate-ssh-keys >> $logfile
 
 echo "Connecting the machines to the load balancer .."
 az network lb probe create --lb-name $lbname --resource-group $rgname --name $probename --port 62503 --protocol Tcp >> $logfile
