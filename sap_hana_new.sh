@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 logfile="./hana_cluster_log"
 #set -x
 
@@ -250,3 +251,4 @@ az vm extension set \
     --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/hn1sec.sh"],"commandToExecute": "./hn1sec.sh"}' >> $logfile
 
 az vm run-command invoke --resource-group $rgname --name $vmname2 --command-id RunShellScript --scripts 'cd / && ./drsync1.sh && sudo crm resource cleanup'
+
