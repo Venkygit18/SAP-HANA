@@ -13,7 +13,7 @@ vmname3="sbd-storage"
 lbname="sles-hana-lb"
 vnetname="hanavnet"
 subnetname="hanasubnet"
-sku_size="Standard_E4-2ads_v5"
+sku_size="Standard_E4ads_v5"
 shared_disk=false
 offer="SUSE:sles-sap-15-sp5:gen1:latest"
 
