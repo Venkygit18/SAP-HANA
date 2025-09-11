@@ -15,7 +15,7 @@ vnetname="hanavnet"
 subnetname="hanasubnet"
 sku_size="Standard_E16as_v6"
 shared_disk=false
-offer="SUSE:sles-sap-15-sp5:gen1:latest"
+offer="SUSE:sles-sap-15-sp5:gen2:latest"
 
 frontendip="hana-db-fwip"
 backendpoolname="hana-db-BP"
