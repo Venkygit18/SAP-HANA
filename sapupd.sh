@@ -3,7 +3,7 @@
 logfile="./hana_cluster_log"
 #set -x
 
-rgname="sles-hana-rg-lab"
+rgname="hana-rg-lab"
 loc="centralindia"
 asname="sleshana"
 vmname1="hn1-db-0"
@@ -12,9 +12,9 @@ vmname3="sbd-storage"
 lbname="sles-hana-lb"
 vnetname="hanavnet"
 subnetname="hanasubnet"
-sku_size="Standard_E4-2ads_v5"
+sku_size="Standard_E16as_v6"
 shared_disk=false
-offer="SUSE:sles-sap-15-sp5:gen1:latest"
+offer="SUSE:sles-sap-15-sp5:gen2:latest"
 
 frontendip="hana-db-fwip"
 backendpoolname="hana-db-BP"
@@ -250,3 +250,4 @@ az vm extension set \
     --protected-settings '{"fileUris": ["https://raw.githubusercontent.com/Venkygit18/SAP-HANA/main/hn1sec.sh"],"commandToExecute": "./hn1sec.sh"}' >> $logfile
 
 az vm run-command invoke --resource-group $rgname --name $vmname2 --command-id RunShellScript --scripts 'cd / && ./drsync1.sh && sudo crm resource cleanup'
+
