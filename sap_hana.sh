@@ -4,16 +4,16 @@
 logfile="./hana_cluster_log"
 #set -x
 
-rgname="sles-hana-rg-lab"
+rgname="Hanalab"
 loc="centralindia"
-asname="sleshana"
+asname="hanalab"
 vmname1="hn1-db-0"
 vmname2="hn1-db-1"
 vmname3="sbd-storage"
 lbname="sles-hana-lb"
 vnetname="hanavnet"
 subnetname="hanasubnet"
-sku_size="Standard_E4ads_v5"
+sku_size="Standard_E16as_v6"
 shared_disk=false
 offer="SUSE:sles-sap-15-sp5:gen1:latest"
 
